@@ -14,8 +14,8 @@ ReactDOM.createRoot(document.body).render(
     <BrowserRouter basename="/crystal-legacy-pokedex">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="pokemon/:name" element={<PokemonPage />} />
-        <Route path="move/:name" element={<MovePage />} />
+        <Route path="pokemon/:slug" element={<PokemonPage />} />
+        <Route path="move/:slug" element={<MovePage />} />
         <Route path="hms" element={<HMsPage />} />
       </Routes>
     </BrowserRouter>
