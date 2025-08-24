@@ -19,10 +19,37 @@ export default function PokemonPage() {
 
   const species = data.species[slug]
 
+  const previousSpecies = Object.values(data.species).find((s) => s.id === species.id - 1) ?? null
+  const nextSpecies = Object.values(data.species).find((s) => s.id === species.id + 1) ?? null
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8">
-        #{species.id} {species.name}
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 pt-6">
+      <h1 className="text-4xl font-bold mb-8 flex items-center justify-between w-2xl">
+        {previousSpecies ? (
+          <a
+            href={`${import.meta.env.BASE_URL}pokemon/${previousSpecies.slug}`}
+            className="text-blue-500 hover:underline text-sm"
+          >
+            &larr; #{previousSpecies.id} {previousSpecies.name}
+          </a>
+        ) : (
+          <span></span>
+        )}
+
+        <span>
+          #{species.id} {species.name}
+        </span>
+
+        {nextSpecies ? (
+          <a
+            href={`${import.meta.env.BASE_URL}pokemon/${nextSpecies.slug}`}
+            className="text-blue-500 hover:underline text-sm"
+          >
+            #{nextSpecies.id} {nextSpecies.name} &rarr;
+          </a>
+        ) : (
+          <span></span>
+        )}
       </h1>
 
       <div className="bg-white p-6 rounded shadow-md w-2xl">
