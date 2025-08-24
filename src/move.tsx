@@ -5,7 +5,7 @@ export default function MovePage() {
       <p className="text-lg mb-4">
         This is where you can find information about different moves from the Crystal Legacy game.
       </p>
-      <a href="/crystal-legacy-pokedex" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <a href="/crystal-legacy-pokedex/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
         Back to Home
       </a>
     </div>

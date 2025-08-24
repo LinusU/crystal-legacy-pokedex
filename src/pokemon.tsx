@@ -11,7 +11,7 @@ export default function PokemonPage() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 className="text-4xl font-bold mb-8">Pokémon Not Found</h1>
         <p className="text-lg mb-4">The Pokémon you are looking for does not exist in the Crystal Legacy game.</p>
-        <a href="/crystal-legacy-pokedex" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <a href="/crystal-legacy-pokedex/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
           Back to Home
         </a>
       </div>
@@ -199,7 +199,7 @@ export default function PokemonPage() {
         )}
       </div>
 
-      <a href="/crystal-legacy-pokedex" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <a href="/crystal-legacy-pokedex/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
         Back to Home
       </a>
     </div>
