@@ -1,13 +1,95 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+
 import Type from './component/type.js'
 import data from './data.js'
 
 export default function HMsPage() {
+  const [filters, setFilters] = useState({
+    cut: false,
+    fly: false,
+    surf: false,
+    strength: false,
+    flash: false,
+    whirlpool: false,
+    waterfall: false,
+  })
+
+  const handleFilterChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const { name, checked } = event.target
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }))
+  }
+
+  const filteredSpecies = Object.values(data.species).filter((species) => {
+    return Object.entries(filters).every(([hm, isChecked]) => {
+      if (!isChecked) return true
+      return species.tmhm.includes(hm)
+    })
+  })
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 pt-6">
       <h1 className="text-4xl font-bold mb-8">HMs Page</h1>
 
       <div className="bg-white p-6 rounded shadow-md max-w-4xl">
+        <div className="mb-4">
+          <label className="mr-4">
+            <input type="checkbox" name="cut" className="mr-2" checked={filters.cut} onChange={handleFilterChange} />{' '}
+            Cut
+          </label>
+          <label className="mr-4">
+            <input type="checkbox" name="fly" className="mr-2" checked={filters.fly} onChange={handleFilterChange} />{' '}
+            Fly
+          </label>
+          <label className="mr-4">
+            <input type="checkbox" name="surf" className="mr-2" checked={filters.surf} onChange={handleFilterChange} />{' '}
+            Surf
+          </label>
+          <label className="mr-4">
+            <input
+              type="checkbox"
+              name="strength"
+              className="mr-2"
+              checked={filters.strength}
+              onChange={handleFilterChange}
+            />{' '}
+            Strength
+          </label>
+          <label className="mr-4">
+            <input
+              type="checkbox"
+              name="flash"
+              className="mr-2"
+              checked={filters.flash}
+              onChange={handleFilterChange}
+            />{' '}
+            Flash
+          </label>
+          <label className="mr-4">
+            <input
+              type="checkbox"
+              name="whirlpool"
+              className="mr-2"
+              checked={filters.whirlpool}
+              onChange={handleFilterChange}
+            />{' '}
+            Whirlpool
+          </label>
+          <label className="mr-4">
+            <input
+              type="checkbox"
+              name="waterfall"
+              className="mr-2"
+              checked={filters.waterfall}
+              onChange={handleFilterChange}
+            />{' '}
+            Waterfall
+          </label>
+        </div>
+
         <table className="table-auto border-collapse border border-gray-400 w-full">
           <thead>
             <tr>
@@ -24,7 +106,7 @@ export default function HMsPage() {
             </tr>
           </thead>
           <tbody>
-            {Object.values(data.species).map((species) => (
+            {filteredSpecies.map((species) => (
               <tr key={species.id} className="text-center">
                 <td className="border border-gray-400 px-4 py-2 text-right">{species.id}</td>
                 <td className="border border-gray-400 px-4 py-2 text-left">
