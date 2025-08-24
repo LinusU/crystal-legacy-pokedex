@@ -12,6 +12,7 @@ const Type: React.FC<{ type: string }> = ({ type }) => {
     psychic: '#F85888',
     bug: '#A8B820',
     rock: '#B8A038',
+    curse: '#705898',
     ghost: '#705898',
     dragon: '#7038F8',
     dark: '#705848',

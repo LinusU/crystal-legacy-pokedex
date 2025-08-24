@@ -1,5 +1,5 @@
 export const TYPE_ALIASES: Record<string, string> = {
-  // Some repos use PSYCHIC_TYPE instead of PSYCHIC in this table.
+  CURSE_TYPE: 'CURSE',
   PSYCHIC_TYPE: 'PSYCHIC',
 }
 

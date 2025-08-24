@@ -47,6 +47,7 @@ interface Data {
   >
 
   moves: Record<string, Move>
+  tutors: Array<{ id: string; move: string }>
 }
 
 declare const data: Data

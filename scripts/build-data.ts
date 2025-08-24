@@ -2,6 +2,7 @@ import { parseBaseStats } from './lib/parseBaseStats.ts'
 import { parseEvosAttacks } from './lib/parseEvosAttacks.ts'
 import { parseMoves } from './lib/parseMoves.ts'
 import { parsePokemonConstants } from './lib/parsePokemonConstants.ts'
+import { parseTutors } from './lib/parseTutors.ts'
 
 // @ts-ignore
 const fs = await import('node:fs')
@@ -24,8 +25,9 @@ async function fetchData(url: string): Promise<string> {
 const species = parsePokemonConstants(await fetchData(`${base}/constants/pokemon_constants.asm`))
 const moves = parseMoves(await fetchData(`${base}/data/moves/moves.asm`))
 const evosAttacks = parseEvosAttacks(await fetchData(`${base}/data/pokemon/evos_attacks.asm`), species)
+const tutors = parseTutors(await fetchData(`${base}/constants/item_constants.asm`))
 
-const result = { species: {}, moves: {} }
+const result = { species: {}, moves: {}, tutors }
 
 for (const pokemon of species) {
   const baseStats = parseBaseStats(

@@ -142,6 +142,52 @@ export default function PokemonPage() {
           </table>
         </div>
 
+        <h2 className="text-2xl font-semibold mb-4">TM/HM Moves</h2>
+        <div className="mb-4 overflow-x-auto">
+          <table className="table-auto border-collapse border border-gray-300 w-full">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-2 py-1">TM/HM</th>
+                <th className="border border-gray-300 px-2 py-1">Move</th>
+                <th className="border border-gray-300 px-2 py-1">Type</th>
+                <th className="border border-gray-300 px-2 py-1">Power</th>
+                <th className="border border-gray-300 px-2 py-1">Accuracy</th>
+                <th className="border border-gray-300 px-2 py-1">PP</th>
+                <th className="border border-gray-300 px-2 py-1">Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              {species.tmhm.map((move) => {
+                const moveData = data.moves[move]
+                const tutor = data.tutors.find((t) => t.move === move)
+
+                return (
+                  <tr key={move}>
+                    <td className="border border-gray-300 px-2 py-1 text-center">{tutor?.id || move}</td>
+                    <td className="border border-gray-300 px-2 py-1">
+                      <Link to={`/move/${move}`} className="text-blue-500 hover:underline">
+                        {moveData.name}
+                      </Link>
+                    </td>
+                    <td className="border border-gray-300 px-2 py-1 text-center">
+                      <div className="flex items-center gap-1">
+                        <Type type={moveData.type} />
+                        <Damage move={moveData} />
+                      </div>
+                    </td>
+                    <td className="border border-gray-300 px-2 py-1 text-right">
+                      {moveData.basePower === 1 ? '*' : moveData.basePower || '—'}
+                    </td>
+                    <td className="border border-gray-300 px-2 py-1 text-right">{moveData.accuracy || '—'}</td>
+                    <td className="border border-gray-300 px-2 py-1 text-right">{moveData.pp}</td>
+                    <td className="border border-gray-300 px-2 py-1 text-xs">{effectDescription(moveData)}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+
         <h2 className="text-2xl font-semibold mb-4">Evolutions</h2>
         {species.evolutions.length > 0 ? (
           <ul>
