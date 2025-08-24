@@ -6,6 +6,9 @@ export default defineConfig({
   output: {
     assetPrefix: '/crystal-legacy-pokedex/',
   },
+  server: {
+    base: '/crystal-legacy-pokedex/',
+  },
   tools: {
     postcss: (_, { addPlugins }) => {
       addPlugins(['@tailwindcss/postcss'])

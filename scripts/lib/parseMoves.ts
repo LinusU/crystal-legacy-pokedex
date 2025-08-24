@@ -1,28 +1,19 @@
+import type { Move } from '../../src/data.d.ts'
 import { prettify, slugify, TYPE_ALIASES } from './util.ts'
-
-export interface MoveRow {
-  name: string // from the first token (usually matches the move constant)
-  slug: string // lowercased constant with underscores -> hyphens
-  basePower: number // integer
-  type: string // e.g., "PSYCHIC" (normalized; see TYPE_ALIASES)
-  accuracy: number // integer (%)
-  pp: number // integer
-  effectChance: number // integer (%)
-}
 
 function toNum(tok: string): number {
   if (/^0x[0-9a-f]+$/i.test(tok)) return parseInt(tok, 16)
   return parseInt(tok, 10)
 }
 
-export function parseMoves(asm: string): MoveRow[] {
+export function parseMoves(asm: string): Move[] {
   const lines = asm.split(/\r?\n/)
 
   const isCommentOrBlank = (s: string) => /^\s*(;|$)/.test(s)
   const stripComment = (s: string) => s.replace(/;.*/, '').trim()
 
   let inTable = false
-  const rows: MoveRow[] = []
+  const rows: Move[] = []
 
   for (const raw of lines) {
     const line = stripComment(raw)

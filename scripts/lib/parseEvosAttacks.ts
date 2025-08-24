@@ -1,23 +1,6 @@
+import type { Evolution, LevelMove } from '../../src/data.d.ts'
 import type { PokemonIndex } from './parsePokemonConstants.ts'
 import { slugify } from './util.ts'
-
-export type Evolution =
-  | { method: 'level'; level: number; species: string }
-  | { method: 'item'; item: string; species: string }
-  | { method: 'trade'; heldItem: string | null; species: string }
-  | {
-      method: 'happiness'
-      time: 'ANYTIME' | 'MORNDAY' | 'NITE'
-      species: string
-    }
-  | {
-      method: 'stat'
-      level: number
-      cmp: 'LT' | 'GT' | 'EQ'
-      species: string
-    }
-
-export type LevelMove = { level: number; move: string }
 
 export type EvosAttacksEntry = {
   evolutions: Evolution[]

@@ -1,17 +1,5 @@
+import type { BaseStats } from '../../src/data.d.ts'
 import { slugify, TYPE_ALIASES } from './util.ts'
-
-export type BaseStats = {
-  stats: { hp: number; atk: number; def: number; spe: number; spa: number; spd: number }
-  types: [string, string]
-  catchRate: number
-  baseExp: number
-  items: [string | null, string | null]
-  genderRatio: string
-  hatchCycles: number
-  growthRate: string
-  eggGroups: [string, string]
-  tmhm: string[]
-}
 
 // helper to assert presence
 function req<T>(v: T | undefined, what: string): T {
