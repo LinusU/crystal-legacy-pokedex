@@ -1,7 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
+import unreachable from 'ts-unreachable'
 import Damage from './component/damage.js'
 import Type from './component/type'
-import data, { type Evolution } from './data.js'
+import data from './data.js'
 
 export default function PokemonPage() {
   const { slug = '' } = useParams<{ slug: string }>()
@@ -139,9 +140,8 @@ export default function PokemonPage() {
         <h2 className="text-2xl font-semibold mb-4">Evolutions</h2>
         {species.evolutions.length > 0 ? (
           <ul>
-            {species.evolutions.map((_evo) => {
-              const evo = _evo as unknown as Evolution
-              const evoSpecies = data.species[evo.species as keyof typeof data.species]
+            {species.evolutions.map((evo) => {
+              const evoSpecies = data.species[evo.species]
 
               switch (evo.method) {
                 case 'level':
@@ -197,6 +197,8 @@ export default function PokemonPage() {
                       {`stat ${evo.cmp === 'LT' ? '<' : evo.cmp === 'GT' ? '>' : '='} threshold`}.
                     </li>
                   )
+                default:
+                  return unreachable(evo)
               }
             })}
           </ul>
