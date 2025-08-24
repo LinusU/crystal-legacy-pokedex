@@ -68,7 +68,7 @@ function parseLevelMove(s: string): LevelMove | null {
   if (!toks) throw new Error(`Unrecognized level move line (not db): "${s}"`)
   if (toks.length === 2 && isNumberLike(toks[0])) {
     const level = num(toks[0])
-    const move = slugify(toks[1])
+    const move = slugify(toks[1].replace(/_M$/, ''))
     return { level, move }
   }
   throw new Error(`Unrecognized level move format: "${s}"`)
