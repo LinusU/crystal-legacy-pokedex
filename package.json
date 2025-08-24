@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/build-data.ts",
     "build": "rsbuild build",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
