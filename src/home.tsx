@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js'
 import type React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import data from './data.js'
 
 type Poke = { id: number; name: string; slug: string }
@@ -10,7 +10,9 @@ const ALL: Poke[] = [...Object.values(data.species)]
 export default function Home() {
   const [q, setQ] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
   const listRef = useRef<HTMLUListElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [active, setActive] = useState(0) // keyboard focus index
 
   // Create Fuse index once
@@ -45,6 +47,15 @@ export default function Home() {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: want to reset index when `q` changes
   useEffect(() => setActive(0), [q])
+
+  useEffect(() => {
+    if (location.state?.focusSearch) {
+      // focus after paint
+      setTimeout(() => inputRef.current?.focus(), 0)
+      // clear the state so it only happens once
+      navigate(location.pathname, { replace: true, state: null })
+    }
+  }, [location, navigate])
 
   const open = (p: Poke | undefined) => {
     if (!p) return
@@ -87,6 +98,7 @@ export default function Home() {
         </label>
         <input
           id="search"
+          ref={inputRef}
           type="search"
           inputMode="search"
           autoComplete="off"
