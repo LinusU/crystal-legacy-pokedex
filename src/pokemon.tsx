@@ -53,7 +53,7 @@ export default function PokemonPage() {
             <img
               src={`${import.meta.env.BASE_URL}sprites/${species.id}.gif`}
               alt={species.name}
-              className="mb-4 w-24 h-24"
+              className="mb-6 w-30 h-30"
               style={{ imageRendering: 'pixelated', transform: 'scale(-1, 1)' }}
             />
 
