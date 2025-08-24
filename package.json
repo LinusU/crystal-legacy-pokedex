@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "node scripts/build-data.ts",
     "build": "rsbuild build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "format": "biome format --write",
