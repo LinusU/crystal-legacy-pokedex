@@ -32,6 +32,7 @@ export type LevelMove = { level: number; move: string }
 export interface Move {
   name: string // from the first token (usually matches the move constant)
   slug: string // lowercased constant with underscores -> hyphens
+  effect: string // e.g., "EFFECT_SLEEP" (keep as-is for now)
   basePower: number // integer
   type: string // e.g., "PSYCHIC" (normalized; see TYPE_ALIASES)
   accuracy: number // integer (%)

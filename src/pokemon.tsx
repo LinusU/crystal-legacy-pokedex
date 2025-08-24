@@ -3,6 +3,7 @@ import unreachable from 'ts-unreachable'
 import Damage from './component/damage.js'
 import Type from './component/type'
 import data from './data.js'
+import { effectDescription } from './util/effect.js'
 
 export default function PokemonPage() {
   const { slug = '' } = useParams<{ slug: string }>()
@@ -98,7 +99,7 @@ export default function PokemonPage() {
         </div>
 
         <h2 className="text-2xl font-semibold mb-4">Level Up Moves</h2>
-        <div className="mb-4">
+        <div className="mb-4 overflow-x-auto">
           <table className="table-auto border-collapse border border-gray-300 w-full">
             <thead>
               <tr>
@@ -108,6 +109,7 @@ export default function PokemonPage() {
                 <th className="border border-gray-300 px-2 py-1">Power</th>
                 <th className="border border-gray-300 px-2 py-1">Accuracy</th>
                 <th className="border border-gray-300 px-2 py-1">PP</th>
+                <th className="border border-gray-300 px-2 py-1">Effect</th>
               </tr>
             </thead>
             <tbody>
@@ -124,12 +126,15 @@ export default function PokemonPage() {
                     <td className="border border-gray-300 px-2 py-1 text-center">
                       <div className="flex items-center gap-1">
                         <Type type={moveData.type} />
-                        <Damage type={moveData.type} basePower={moveData.basePower} />
+                        <Damage move={moveData} />
                       </div>
                     </td>
-                    <td className="border border-gray-300 px-2 py-1 text-right">{moveData.basePower || '—'}</td>
+                    <td className="border border-gray-300 px-2 py-1 text-right">
+                      {moveData.basePower === 1 ? '*' : moveData.basePower || '—'}
+                    </td>
                     <td className="border border-gray-300 px-2 py-1 text-right">{moveData.accuracy || '—'}</td>
                     <td className="border border-gray-300 px-2 py-1 text-right">{moveData.pp}</td>
+                    <td className="border border-gray-300 px-2 py-1 text-xs">{effectDescription(moveData)}</td>
                   </tr>
                 )
               })}

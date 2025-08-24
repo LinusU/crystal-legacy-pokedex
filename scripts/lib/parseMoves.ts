@@ -47,7 +47,7 @@ export function parseMoves(asm: string): Move[] {
       continue
     }
 
-    const [constName, _, basePowerStr, typeTok, accStr, ppStr, effChanceStr] = parts
+    const [constName, effect, basePowerStr, typeTok, accStr, ppStr, effChanceStr] = parts
 
     const name = prettify(constName.replace(/_M$/, ''))
     const slug = slugify(constName.replace(/_M$/, ''))
@@ -61,6 +61,7 @@ export function parseMoves(asm: string): Move[] {
     rows.push({
       name,
       slug,
+      effect,
       basePower,
       type,
       accuracy,
