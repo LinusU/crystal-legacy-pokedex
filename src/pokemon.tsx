@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import Damage from './component/damage.js'
 import Type from './component/type'
 import data, { type Evolution } from './data.js'
 
@@ -129,7 +130,10 @@ export default function PokemonPage() {
                       </a>
                     </td>
                     <td className="border border-gray-300 px-2 py-1 text-center">
-                      <Type type={moveData.type} />
+                      <div className="flex items-center gap-1">
+                        <Type type={moveData.type} />
+                        <Damage type={moveData.type} basePower={moveData.basePower} />
+                      </div>
                     </td>
                     <td className="border border-gray-300 px-2 py-1 text-right">{moveData.basePower || '—'}</td>
                     <td className="border border-gray-300 px-2 py-1 text-right">{moveData.accuracy || '—'}</td>

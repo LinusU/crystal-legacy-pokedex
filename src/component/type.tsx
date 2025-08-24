@@ -24,8 +24,8 @@ const Type: React.FC<{ type: string }> = ({ type }) => {
 
   return (
     <span
-      className="inline-block px-2 py-1 rounded-md font-bold capitalize text-white text-xs"
-      style={{ backgroundColor }}
+      className="inline-block border border-gray-800 rounded-xs font-bold capitalize text-center text-white text-xs"
+      style={{ backgroundColor, height: 18, lineHeight: '16px', minWidth: 72 }}
     >
       {type}
     </span>
