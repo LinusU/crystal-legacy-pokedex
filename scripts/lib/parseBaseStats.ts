@@ -1,4 +1,4 @@
-import type { BaseStats } from '../../src/data.d.ts'
+import type { BaseStats } from '../../src/data.js'
 import { slugify, TYPE_ALIASES } from './util.ts'
 
 // helper to assert presence

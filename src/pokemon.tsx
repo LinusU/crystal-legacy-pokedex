@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import Type from './component/type'
-import type { Evolution } from './data.d.ts'
-import data from './data.json'
+import data, { type Evolution } from './data.js'
 
 export default function PokemonPage() {
   const { slug = '' } = useParams<{ slug: string }>()
@@ -18,7 +17,7 @@ export default function PokemonPage() {
     )
   }
 
-  const species = data.species[slug as keyof typeof data.species]
+  const species = data.species[slug]
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -90,7 +89,7 @@ export default function PokemonPage() {
             </thead>
             <tbody>
               {species.levelUpMoves.map((move) => {
-                const moveData = data.moves[move.move as keyof typeof data.moves]
+                const moveData = data.moves[move.move]
                 return (
                   <tr key={`${move.level}-${move.move}`}>
                     <td className="border border-gray-300 px-2 py-1 text-right">{move.level}</td>

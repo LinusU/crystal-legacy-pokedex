@@ -16,4 +16,4 @@ dist/
 .idea
 
 # Project
-src/data.json
+src/data.js

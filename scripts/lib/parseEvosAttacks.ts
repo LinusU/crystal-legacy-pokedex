@@ -1,4 +1,4 @@
-import type { Evolution, LevelMove } from '../../src/data.d.ts'
+import type { Evolution, LevelMove } from '../../src/data.js'
 import type { PokemonIndex } from './parsePokemonConstants.ts'
 import { slugify } from './util.ts'
 

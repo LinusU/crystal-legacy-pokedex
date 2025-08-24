@@ -42,12 +42,12 @@ export interface Move {
 interface Data {
   species: Record<
     string,
-    { id: number; name: string; slug: string; evolutions: Evolution; levelUpMoves: LevelMove } & BaseStats
+    { id: number; name: string; slug: string; evolutions: Evolution[]; levelUpMoves: LevelMove[] } & BaseStats
   >
 
   moves: Record<string, Move>
 }
 
-const data: Data
+declare const data: Data
 
 export default data

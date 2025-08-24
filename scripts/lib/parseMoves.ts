@@ -1,4 +1,4 @@
-import type { Move } from '../../src/data.d.ts'
+import type { Move } from '../../src/data.js'
 import { prettify, slugify, TYPE_ALIASES } from './util.ts'
 
 function toNum(tok: string): number {

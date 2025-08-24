@@ -44,4 +44,4 @@ for (const move of moves) {
   result.moves[move.slug] = move
 }
 
-fs.writeFileSync('src/data.json', JSON.stringify(result, null, 2), 'utf-8')
+fs.writeFileSync('src/data.js', `export default ${JSON.stringify(result)}`, 'utf-8')
