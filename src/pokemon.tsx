@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Damage from './component/damage.js'
 import Type from './component/type'
 import data, { type Evolution } from './data.js'
@@ -11,9 +11,9 @@ export default function PokemonPage() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 className="text-4xl font-bold mb-8">Pokémon Not Found</h1>
         <p className="text-lg mb-4">The Pokémon you are looking for does not exist in the Crystal Legacy game.</p>
-        <a href="/crystal-legacy-pokedex/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <Link to="/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
           Back to Home
-        </a>
+        </Link>
       </div>
     )
   }
@@ -27,12 +27,9 @@ export default function PokemonPage() {
     <div className="flex flex-col items-center min-h-screen bg-gray-100 pt-6">
       <h1 className="text-4xl font-bold mb-8 flex items-center justify-between w-2xl">
         {previousSpecies ? (
-          <a
-            href={`${import.meta.env.BASE_URL}pokemon/${previousSpecies.slug}`}
-            className="text-blue-500 hover:underline text-sm"
-          >
+          <Link to={`/pokemon/${previousSpecies.slug}`} className="text-blue-500 hover:underline text-sm">
             &larr; #{previousSpecies.id} {previousSpecies.name}
-          </a>
+          </Link>
         ) : (
           <span></span>
         )}
@@ -42,12 +39,9 @@ export default function PokemonPage() {
         </span>
 
         {nextSpecies ? (
-          <a
-            href={`${import.meta.env.BASE_URL}pokemon/${nextSpecies.slug}`}
-            className="text-blue-500 hover:underline text-sm"
-          >
+          <Link to={`/pokemon/${nextSpecies.slug}`} className="text-blue-500 hover:underline text-sm">
             #{nextSpecies.id} {nextSpecies.name} &rarr;
-          </a>
+          </Link>
         ) : (
           <span></span>
         )}
@@ -122,12 +116,9 @@ export default function PokemonPage() {
                   <tr key={`${move.level}-${move.move}`}>
                     <td className="border border-gray-300 px-2 py-1 text-right">{move.level}</td>
                     <td className="border border-gray-300 px-2 py-1">
-                      <a
-                        href={`${import.meta.env.BASE_URL}move/${move.move}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/move/${move.move}`} className="text-blue-500 hover:underline">
                         {moveData.name}
-                      </a>
+                      </Link>
                     </td>
                     <td className="border border-gray-300 px-2 py-1 text-center">
                       <div className="flex items-center gap-1">
@@ -157,12 +148,9 @@ export default function PokemonPage() {
                   return (
                     <li key={evo.species}>
                       Evolves to{' '}
-                      <a
-                        href={`${import.meta.env.BASE_URL}pokemon/${evoSpecies.slug}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/pokemon/${evoSpecies.slug}`} className="text-blue-500 hover:underline">
                         {evoSpecies.name}
-                      </a>{' '}
+                      </Link>{' '}
                       at level {evo.level}.
                     </li>
                   )
@@ -170,12 +158,9 @@ export default function PokemonPage() {
                   return (
                     <li key={evo.species}>
                       Evolves to{' '}
-                      <a
-                        href={`${import.meta.env.BASE_URL}pokemon/${evoSpecies.slug}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/pokemon/${evoSpecies.slug}`} className="text-blue-500 hover:underline">
                         {evoSpecies.name}
-                      </a>{' '}
+                      </Link>{' '}
                       using the item {evo.item}.
                     </li>
                   )
@@ -183,12 +168,9 @@ export default function PokemonPage() {
                   return (
                     <li key={evo.species}>
                       Evolves to{' '}
-                      <a
-                        href={`${import.meta.env.BASE_URL}pokemon/${evoSpecies.slug}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/pokemon/${evoSpecies.slug}`} className="text-blue-500 hover:underline">
                         {evoSpecies.name}
-                      </a>{' '}
+                      </Link>{' '}
                       via trade
                       {evo.heldItem ? ` while holding ${evo.heldItem}` : ''}.
                     </li>
@@ -197,12 +179,9 @@ export default function PokemonPage() {
                   return (
                     <li key={evo.species}>
                       Evolves to{' '}
-                      <a
-                        href={`${import.meta.env.BASE_URL}pokemon/${evoSpecies.slug}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/pokemon/${evoSpecies.slug}`} className="text-blue-500 hover:underline">
                         {evoSpecies.name}
-                      </a>{' '}
+                      </Link>{' '}
                       with high happiness
                       {evo.time !== 'ANYTIME' ? ` during ${evo.time.toLowerCase()}` : ''}.
                     </li>
@@ -211,12 +190,9 @@ export default function PokemonPage() {
                   return (
                     <li key={evo.species}>
                       Evolves to{' '}
-                      <a
-                        href={`${import.meta.env.BASE_URL}pokemon/${evoSpecies.slug}`}
-                        className="text-blue-500 hover:underline"
-                      >
+                      <Link to={`/pokemon/${evoSpecies.slug}`} className="text-blue-500 hover:underline">
                         {evoSpecies.name}
-                      </a>{' '}
+                      </Link>{' '}
                       at level {evo.level} when a specific stat comparison is met:{' '}
                       {`stat ${evo.cmp === 'LT' ? '<' : evo.cmp === 'GT' ? '>' : '='} threshold`}.
                     </li>
@@ -229,9 +205,9 @@ export default function PokemonPage() {
         )}
       </div>
 
-      <a href="/crystal-legacy-pokedex/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <Link to="/" className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
         Back to Home
-      </a>
+      </Link>
     </div>
   )
 }

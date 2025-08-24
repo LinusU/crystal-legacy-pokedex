@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function MovePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -5,9 +7,9 @@ export default function MovePage() {
       <p className="text-lg mb-4">
         This is where you can find information about different moves from the Crystal Legacy game.
       </p>
-      <a href="/crystal-legacy-pokedex/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <Link to="/" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
         Back to Home
-      </a>
+      </Link>
     </div>
   )
 }
